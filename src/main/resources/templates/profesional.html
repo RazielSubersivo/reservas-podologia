@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Profesionales - Podología Clínica</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+  <h1 class="my-4">Registro de Profesionales</h1>
+
+  <form action="/registrar-profesional" method="POST">
+    <div class="form-group">
+      <label for="nombreCompleto">Nombre Completo</label>
+      <input type="text" class="form-control" id="nombreCompleto" name="nombreCompleto" required>
+    </div>
+    <div class="form-group">
+      <label for="especialidad">Especialidad</label>
+      <input type="text" class="form-control" id="especialidad" name="especialidad" required>
+    </div>
+    <button type="submit" class="btn btn-success">Registrar Profesional</button>
+  </form>
+
+  <h2 class="my-4">Profesionales Registrados</h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre Completo</th>
+      <th>Especialidad</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="profesional : ${profesionales}">
+      <td th:text="${profesional.id}"></td>
+      <td th:text="${profesional.nombreCompleto}"></td>
+      <td th:text="${profesional.especialidad}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
+.

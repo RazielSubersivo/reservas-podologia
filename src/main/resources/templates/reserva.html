@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva de Horas - Podología Clínica Peyeya</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Podología Clínica Peyeya</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="#">Servicios</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Quiénes Somos</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <h1 class="my-4">Reservas de Horas Médicas</h1>
+
+    <form action="/reservar" method="POST">
+        <div class="form-group">
+            <label for="paciente">Nombre del Paciente</label>
+            <input type="text" class="form-control" id="paciente" name="paciente" required>
+        </div>
+        <div id="calendar"></div>
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var calendarEl = document.getElementById('calendar');
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
+                    events: '/api/horas-disponibles', // Endpoint que devuelve las horas disponibles
+                });
+                calendar.render();
+            });
+        </script>
+        <div class="form-group">
+            <label for="profesional">Profesional</label>
+            <select class="form-control" id="profesional" name="profesional.id" required>
+                <option value="1">Profesional 1</option>
+                <option value="2">Profesional 2</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Reservar</button>
+    </form>
+
+    <h2 class="my-4">Reservas existentes</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Paciente</th>
+            <th>Fecha y Hora</th>
+            <th>Profesional</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="reserva : ${reservas}">
+            <td th:text="${reserva.paciente}"></td>
+            <td th:text="${reserva.fechaHora}"></td>
+            <td th:text="${reserva.profesional.nombre}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
