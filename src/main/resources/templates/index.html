@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,9 +14,17 @@
   </button>
   <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item"><a class="nav-link" href="#">Servicios</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Quiénes Somos</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+      <li class="nav-item"><a class="nav-link" href="/servicios">Servicios</a></li>
+      <li class="nav-item"><a class="nav-link" href="/quienes-somos">Quiénes Somos</a></li>
+      <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+      <li class="nav-item" sec:authorize="hasRole('PROFESIONAL')">
+        <a class="nav-link" href="/profesional/mantenedor">Mi Panel</a>
+      </li>
+      <li class="nav-item" sec:authorize="isAuthenticated()">
+        <form th:action="@{/logout}" method="post" class="form-inline">
+          <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Cerrar Sesión</button>
+        </form>
+      </li>
     </ul>
   </div>
 </nav>
@@ -46,8 +54,7 @@
     </a>
   </div>
 
-  <a href="/reserva" class="btn btn-primary btn-lg">Reservar Hora</a>
-
+  <a href="/reservas/disponibles" class="btn btn-primary btn-lg mt-3">Reservar Hora</a>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

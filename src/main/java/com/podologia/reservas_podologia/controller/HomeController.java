@@ -8,17 +8,30 @@ public class HomeController {
 
     @GetMapping("/reserva")
     public String mostrarReserva() {
-        return "reserva"; // Spring buscará "reserva.html" en /templates/
+        return "reserva";
     }
 
     @GetMapping("/profesional")
     public String mostrarProfesional() {
-        return "profesional"; // Spring buscará "profesional.html" en /templates/
+        return "profesional";
     }
+
     @GetMapping("/index")
     public String mostrarIndex() {
-        return "index"; // Spring buscará "index.html" en /templates/
+        return "index";
     }
 
-}
+    @GetMapping("/servicios")
+    public String mostrarServicios() {
+        return "servicios"; // Necesitarías un archivo servicios.html
+    }
 
+    @GetMapping("/quienes-somos")
+    public String mostrarQuienesSomos() {
+        return "quienes-somos"; // Necesitarías un archivo quienes-somos.html
+    }
+    // Eliminar: @GetMapping("/login")
+    // public String mostrarLogin() {
+    //     return "login";
+    // }
+}

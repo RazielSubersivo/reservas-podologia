@@ -1,8 +1,11 @@
 package com.podologia.reservas_podologia.model;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.text.DateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 public class HoraDisponible {
