@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de Profesional</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1 class="my-4">Panel de Profesional</h1>
+
+    <h2>Agregar Hora Disponible</h2>
+    <form action="/profesional/agregar-hora" method="post">
+        <div class="form-group">
+            <label for="fechaHora">Fecha y Hora:</label>
+            <input type="datetime-local" class="form-control" id="fechaHora" name="fechaHora" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar Hora</button>
+    </form>
+
+    <h2>Mis Horas Disponibles</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Fecha y Hora</th>
+            <th>Reservada</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="hora : ${horasDisponibles}">
+            <td th:text="${hora.fechaHora}"></td>
+            <td th:text="${hora.reservada ? 'Sí' : 'No'}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
